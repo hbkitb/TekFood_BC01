@@ -1,0 +1,47 @@
+{
+  "id": "30409879-b856-405b-b366-8f10cfa532f3",
+  "name": "TekFood_BC01",
+  "publisher": "ITBASEN",
+  "version": "1.0.0.6",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {
+      "id": "437dbf0e-84ff-417a-965d-ed2bb9650972",
+      "publisher": "Microsoft",
+      "name": "Base Application",
+      "version": "16.0.0.0"
+    },
+    {
+      "id": "63ca2fa4-4f03-4f2b-a480-172fef340d3f",
+      "publisher": "Microsoft",
+      "name": "System Application",
+      "version": "1.0.0.0"
+    },
+    
+    {
+      "name": "OIOUBL",
+      "id": "ac762be1-e90f-4a72-b519-612a5e3ddc2e",
+      "publisher": "Microsoft","version": "15.0.36560.0"
+      }
+
+
+  ],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "18.0.0.0",
+  "idRanges": [
+    {
+      "from": 50000,
+      "to": 71000
+    }
+  ],
+    
+  "showMyCode": true,
+  "runtime": "7.0"
+}
