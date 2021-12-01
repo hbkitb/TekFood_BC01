@@ -241,7 +241,7 @@ pageextension 50001 "Item_Card ITB" extends "Item Card"
                         xml: XmlDocument;
                     begin
 
-                        Xmlport.Run(50102, false, false);
+                        Xmlport.Run(50102, false, false);//
                     end;
                 }*/
         }
