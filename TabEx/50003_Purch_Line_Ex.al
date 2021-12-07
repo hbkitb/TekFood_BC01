@@ -2,7 +2,21 @@ tableextension 50003 "Purch Line ITB" extends "Purchase Line"
 {
     fields
     {
+        field(50000; QtyColli; Decimal)
+        {
+            Caption = 'AntalColli';
+            trigger OnValidate()
+            var
+            //item: Record Item;
+            begin
+                if type = Type::Item then begin
 
+
+                end;
+            end;
+
+
+        }
 
     }
 
