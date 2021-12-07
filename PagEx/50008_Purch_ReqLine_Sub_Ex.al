@@ -3,7 +3,7 @@ pageextension 50008 "Purch ReqLines Subform ITB" extends "Purchase Quote Subform
     layout
     {
         //addlast(Content)
-        addafter(Type)
+        addafter("No.")
         {
 
 

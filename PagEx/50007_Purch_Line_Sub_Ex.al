@@ -3,7 +3,7 @@ pageextension 50007 "Purch Lines Subform ITB" extends "Purchase Order Subform"
     layout
     {
         //addlast(Content)
-        addafter(Type)
+        addafter("No.")
         {
 
 
