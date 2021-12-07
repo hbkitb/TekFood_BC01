@@ -35,7 +35,9 @@ pageextension 50008 "Purch ReqLines Subform ITB" extends "Purchase Quote Subform
                     else
                         rec.validate(Quantity, rec.QtyColli);
 
-
+                    Rec.Validate("Unit Cost");
+                    Rec.Validate("Unit Cost (LCY)");
+                    rec.Validate("Direct Unit Cost");
 
                 end;
             }

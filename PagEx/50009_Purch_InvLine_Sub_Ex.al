@@ -1,4 +1,4 @@
-pageextension 50007 "Purch Lines Subform ITB" extends "Purchase Order Subform"
+pageextension 50009 "Purch InvLines Subform ITB" extends "Purch. Invoice Subform"
 {
     layout
     {
@@ -39,8 +39,6 @@ pageextension 50007 "Purch Lines Subform ITB" extends "Purchase Order Subform"
                     Rec.Validate("Unit Cost (LCY)");
                     rec.Validate("Direct Unit Cost");
 
-
-
                 end;
             }
 
@@ -56,6 +54,3 @@ pageextension 50007 "Purch Lines Subform ITB" extends "Purchase Order Subform"
     var
 
 }
-
-
-
