@@ -95,6 +95,7 @@ pageextension 50005 "Sales InvLines Subform ITB" extends "Sales Invoice Subform"
                             SalesItemNo := EanItem02."No.";
 
                             Rec.Validate("No.", EanItem02."No.");
+                            Rec.Mangde := EanItem02.Mangde;  //HBK / ITB - 091221
 
                             Colli := EanItem02.KartAntal;
 
@@ -160,6 +161,7 @@ pageextension 50005 "Sales InvLines Subform ITB" extends "Sales Invoice Subform"
                             LineNo := 10;
 
                             Rec.Validate("No.", EanItem."No.");
+                            Rec.Mangde := EanItem.Mangde;  //HBK / ITB - 091221
 
                             //if Rec.Quantity = 0 then
                             rec.Validate(Quantity, 1);
@@ -210,6 +212,7 @@ pageextension 50005 "Sales InvLines Subform ITB" extends "Sales Invoice Subform"
                                 LineNo := 10;
 
                                 Rec.Validate("No.", EanItem."No.");
+                                Rec.Mangde := EanItem.Mangde;  //HBK / ITB - 091221
 
                                 //if Rec.Quantity = 0 then
                                 rec.Validate(Quantity, 1);
