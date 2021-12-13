@@ -18,6 +18,22 @@ tableextension 50003 "Purch Line ITB" extends "Purchase Line"
 
         }
 
+        field(50001; EANNr; Text[50])
+        {
+            Caption = 'EANNr';
+            trigger OnValidate()
+            var
+                item: Record Item;
+            begin
+                if type = Type::Item then begin
+
+
+                end;
+            end;
+
+
+        }
+
     }
 
     trigger OnAfterInsert()
