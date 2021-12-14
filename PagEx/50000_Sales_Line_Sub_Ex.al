@@ -85,69 +85,71 @@ pageextension 50000 "Sales Lines Subform ITB" extends "Sales Order Subform"
                     EanItem02.SetRange(EANNr02, Rec.EANNr);
 
                     if EanItem02.FindSet then begin
-                        //Rec."No." := EanItem."No.";
-                        EanItem.Reset;
-                        EanItem.SetRange(EANNr, Rec.EANNr);
-                        if EanItem.FindSet then begin
+                        Rec."No." := EanItem02."No.";  //141221
+                        //141221 Rec."No." := EanItem."No.";
+                        //141221 EanItem.Reset;
+                        //141221 EanItem.SetRange(EANNr, Rec.EANNr);
+                        //141221  if EanItem.FindSet then begin
 
 
 
-                            SalesItemNo := EanItem02."No.";
+                        SalesItemNo := EanItem02."No.";
 
-                            Rec.Validate("No.", EanItem02."No.");
-                            Rec.Mangde := EanItem02.Mangde;  //HBK / ITB - 091221
+                        Rec.Validate("No.", EanItem02."No.");
+                        Rec.Mangde := EanItem02.Mangde;  //HBK / ITB - 091221
 
-                            Colli := EanItem02.KartAntal;
+                        Colli := EanItem02.KartAntal;
 
-                            if Colli <> 0 then begin
+                        if Colli <> 0 then begin
 
-                                Rec.QtyColli := 1;  //1 pr. 121121 Colli;
-                                rec.Validate(Quantity, Colli);
+                            Rec.QtyColli := 1;  //1 pr. 121121 Colli;
+                            rec.Validate(Quantity, Colli);
 
-                            end
-                            else begin
-                                Rec.QtyColli := 0;
-                                rec.Validate(Quantity, 1);
-                            end;
-                            //NoOnAfterValidate();
-                            //UpdateEditableOnRow();
-                            //ShowShortcutDimCode(ShortcutDimCode);
+                        end
+                        else begin
+                            Rec.QtyColli := 0;
+                            rec.Validate(Quantity, 1);
+                        end;
+                        //NoOnAfterValidate();
+                        //UpdateEditableOnRow();
+                        //ShowShortcutDimCode(ShortcutDimCode);
 
-                            //QuantityOnAfterValidate();
-                            //UpdateTypeText();
-                            //DeltaUpdateTotals();
-                            Rec.EANNr := EanItem02.EANNr;
+                        //QuantityOnAfterValidate();
+                        //UpdateTypeText();
+                        //DeltaUpdateTotals();
+                        Rec.EANNr := EanItem02.EANNr;
+
+                        CurrPage.Update();
+
+                        //Pantlinie
+                        if StrLen(EanItem02.PantItem) > 2 then begin
+                            Clear(PantLine);
+
+                            LineNo := Rec."Line No." - 500;
+                            PantLine.Validate("Line No.", LineNo);
+
+                            PantLine.Validate("Document Type", Rec."Document Type");
+                            PantLine.Validate("Document No.", Rec."Document No.");
+
+                            PantLine.Type := PantLine.Type::Item;
+                            PantLine.Validate("No.", EanItem02.PantItem);
+
+                            PantLine.Validate(Quantity, Rec.Quantity);
+                            PantLine.QtyColli := 0;
+
+                            //141221 PantLine.EANNr := EanItem.EANNr;
+                            PantLine.EANNr := EanItem02.EANNr;  //141221
+
+                            PantLine.Insert(true);
+
+                            Rec.PantLineNo := PantLine."Line No.";
+                            //PantLinie                            
 
                             CurrPage.Update();
-
-                            //Pantlinie
-                            if StrLen(EanItem02.PantItem) > 2 then begin
-                                Clear(PantLine);
-
-                                LineNo := Rec."Line No." - 500;
-                                PantLine.Validate("Line No.", LineNo);
-
-                                PantLine.Validate("Document Type", Rec."Document Type");
-                                PantLine.Validate("Document No.", Rec."Document No.");
-
-                                PantLine.Type := PantLine.Type::Item;
-                                PantLine.Validate("No.", EanItem02.PantItem);
-
-                                PantLine.Validate(Quantity, Rec.Quantity);
-                                PantLine.QtyColli := 0;
-
-                                PantLine.EANNr := EanItem.EANNr;
-
-                                PantLine.Insert(true);
-
-                                Rec.PantLineNo := PantLine."Line No.";
-                                //PantLinie                            
-
-                                CurrPage.Update();
-                            end;  //if pantitem
+                        end;  //if pantitem
 
 
-                        end;
+                        //141221  end;
 
                         //Rec.EANNr := EanTemp;//
                     end
