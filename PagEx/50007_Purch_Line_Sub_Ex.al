@@ -86,50 +86,61 @@ pageextension 50007 "Purch Lines Subform ITB" extends "Purchase Order Subform"
                     EanItem02.SetRange(EANNr02, Rec.EANNr);
 
                     if EanItem02.FindSet then begin
-                        //Rec."No." := EanItem."No.";
-                        EanItem.Reset;
-                        EanItem.SetRange(EANNr, Rec.EANNr);
-                        if EanItem.FindSet then begin
+                        Rec."No." := EanItem02."No.";
+                        //141221 EanItem.Reset;
+                        //141221 EanItem.SetRange(EANNr, Rec.EANNr);
+                        //141221 if EanItem.FindSet then begin
 
 
 
-                            SalesItemNo := EanItem02."No.";
+                        SalesItemNo := EanItem02."No.";
 
-                            Rec."No." := EanItem02."No.";
-                            if Rec."Direct Unit Cost" <> 0 then begin
-                                Rec."Direct Unit Cost" := EanItem02."Last Direct Cost";
-                                rec."Unit Cost" := EanItem02."Last Direct Cost";
-                            end;
-                            Rec.Validate("No.", EanItem02."No.");
-                            //Rec.Mangde := EanItem02.Mangde;  //HBK / ITB - 091221
-
-                            Colli := EanItem02.KartAntal;
-
-                            if Colli <> 0 then begin
-
-                                Rec.QtyColli := 1;  //1 pr. 121121 Colli;
-                                rec.Validate(Quantity, Colli);
-
-                            end
-                            else begin
-                                Rec.QtyColli := 0;
-                                rec.Validate(Quantity, 1);
-                            end;
-                            //NoOnAfterValidate();
-                            //UpdateEditableOnRow();
-                            //ShowShortcutDimCode(ShortcutDimCode);
-
-                            //QuantityOnAfterValidate();
-                            //UpdateTypeText();
-                            //DeltaUpdateTotals();
-                            Rec.EANNr := EanItem02.EANNr;
-
-                            CurrPage.Update();
-
-
-
-
+                        Rec."No." := EanItem02."No.";
+                        /*
+                        if Rec."Direct Unit Cost" <> 0 then begin
+                            Rec."Direct Unit Cost" := EanItem02."Last Direct Cost";
+                            rec."Unit Cost" := EanItem02."Last Direct Cost";
+                               Rec."Unit Cost (LCY)" := EanItem."Last Direct Cost";
+                                //Rec.Validate("Unit Cost (LCY)", EanItem."Last Direct Cost");
+                                Rec.Validate("Unit Cost");
+                                Rec.Validate("Unit Cost (LCY)");
+                                rec.Validate("Direct Unit Cost");                                
                         end;
+                        */
+                        Rec.Validate("No.", EanItem02."No.");
+                        //Rec.Mangde := EanItem02.Mangde;  //HBK / ITB - 091221
+
+                        Colli := EanItem02.KartAntal;
+
+                        if Colli <> 0 then begin
+
+                            Rec.QtyColli := 1;  //1 pr. 121121 Colli;
+                            rec.Validate(Quantity, Colli);
+
+                        end
+                        else begin
+                            Rec.QtyColli := 0;
+                            rec.Validate(Quantity, 1);
+                        end;
+
+                        Rec.Validate("Unit Cost");
+                        Rec.Validate("Unit Cost (LCY)");
+                        rec.Validate("Direct Unit Cost");
+                        //NoOnAfterValidate();
+                        //UpdateEditableOnRow();
+                        //ShowShortcutDimCode(ShortcutDimCode);
+
+                        //QuantityOnAfterValidate();
+                        //UpdateTypeText();
+                        //DeltaUpdateTotals();
+                        Rec.EANNr := EanItem02.EANNr;
+
+                        CurrPage.Update();
+
+
+
+
+                        //141221 end;
 
                         //Rec.EANNr := EanTemp;//
                     end
@@ -143,10 +154,17 @@ pageextension 50007 "Purch Lines Subform ITB" extends "Purchase Order Subform"
                             LineNo := 10;
 
                             Rec."No." := EanItem."No.";
+                            /*
                             if Rec."Direct Unit Cost" <> 0 then begin
                                 Rec."Direct Unit Cost" := EanItem."Last Direct Cost";
                                 rec."Unit Cost" := EanItem."Last Direct Cost";
+                                                                   Rec."Unit Cost (LCY)" := EanItem."Last Direct Cost";
+                                    //Rec.Validate("Unit Cost (LCY)", EanItem."Last Direct Cost");
+                                    Rec.Validate("Unit Cost");
+                                    Rec.Validate("Unit Cost (LCY)");
+                                    rec.Validate("Direct Unit Cost");
                             end;
+                            */
                             Rec.Validate("No.", EanItem."No.");
                             //Rec.Mangde := EanItem.Mangde;  //HBK / ITB - 091221
 
@@ -154,6 +172,10 @@ pageextension 50007 "Purch Lines Subform ITB" extends "Purchase Order Subform"
                             //if Rec.Quantity = 0 then
                             rec.Validate(Quantity, 1);
                             rec.QtyColli := 0;
+
+                            Rec.Validate("Unit Cost");
+                            Rec.Validate("Unit Cost (LCY)");
+                            rec.Validate("Direct Unit Cost");
                             //NoOnAfterValidate();
                             //UpdateEditableOnRow();
                             //ShowShortcutDimCode(ShortcutDimCode);
@@ -178,6 +200,7 @@ pageextension 50007 "Purch Lines Subform ITB" extends "Purchase Order Subform"
                                 LineNo := 10;
                                 //Message('00');
                                 Rec."No." := EanItem."No.";
+                                /*
                                 if Rec."Direct Unit Cost" <> 0 then begin
                                     Rec."Direct Unit Cost" := EanItem."Last Direct Cost";
                                     rec."Unit Cost" := EanItem."Last Direct Cost";
@@ -188,6 +211,7 @@ pageextension 50007 "Purch Lines Subform ITB" extends "Purchase Order Subform"
                                     rec.Validate("Direct Unit Cost");
 
                                 end;
+                                */
                                 Rec.Validate("No.", EanItem."No.");
                                 //Rec.Mangde := EanItem.Mangde;  //HBK / ITB - 091221
 
@@ -196,6 +220,11 @@ pageextension 50007 "Purch Lines Subform ITB" extends "Purchase Order Subform"
                                 rec.Validate(Quantity, 1);
                                 //Message('02');
                                 rec.QtyColli := 0;
+
+
+                                Rec.Validate("Unit Cost");
+                                Rec.Validate("Unit Cost (LCY)");
+                                rec.Validate("Direct Unit Cost");
                                 //NoOnAfterValidate();
                                 //UpdateEditableOnRow();
                                 //ShowShortcutDimCode(ShortcutDimCode);
