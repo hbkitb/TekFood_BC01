@@ -168,14 +168,30 @@ pageextension 50007 "Purch Lines Subform ITB" extends "Purchase Order Subform"
                             Rec.Validate("No.", EanItem."No.");
                             //Rec.Mangde := EanItem.Mangde;  //HBK / ITB - 091221
 
+                            //fra no
+                            //ApplicationArea = Suite;
+                            //               ShowMandatory = Type <> Type::" ";
+                            //             ToolTip = 'Specifies the number of a general ledger account, item, additional cost, or fixed asset, depending on what you selected in the Type field.';
+
+                            //           trigger OnValidate()
+                            begin
+                                //ShowShortcutDimCode(ShortcutDimCode);
+                                NoOnAfterValidate();
+
+                                UpdateTypeText();
+                                DeltaUpdateTotals();
+
+                                CurrPage.Update();
+                            end;
+                            //fra no
 
                             //if Rec.Quantity = 0 then
                             rec.Validate(Quantity, 1);
                             rec.QtyColli := 0;
 
-                            Rec.Validate("Unit Cost");
-                            Rec.Validate("Unit Cost (LCY)");
-                            rec.Validate("Direct Unit Cost");
+                            //igen Rec.Validate("Unit Cost");
+                            //igen Rec.Validate("Unit Cost (LCY)");
+                            //igen rec.Validate("Direct Unit Cost");
                             //NoOnAfterValidate();
                             //UpdateEditableOnRow();
                             //ShowShortcutDimCode(ShortcutDimCode);
@@ -199,7 +215,11 @@ pageextension 50007 "Purch Lines Subform ITB" extends "Purchase Order Subform"
                                 //clear(PantLine);
                                 LineNo := 10;
                                 //Message('00');
-                                Rec."No." := EanItem."No.";
+                                Message('555');
+                                rec."No." := EanItem."No.";
+                                Rec.Validate("No.");
+                                //Rec.Validate("No.", EanItem."No.");
+                                //rec."Direct Unit Cost" := EanItem."Last Direct Cost";
                                 /*
                                 if Rec."Direct Unit Cost" <> 0 then begin
                                     Rec."Direct Unit Cost" := EanItem."Last Direct Cost";
@@ -212,19 +232,34 @@ pageextension 50007 "Purch Lines Subform ITB" extends "Purchase Order Subform"
 
                                 end;
                                 */
-                                Rec.Validate("No.", EanItem."No.");
+                                //Rec.Validate("No.", EanItem."No.");
                                 //Rec.Mangde := EanItem.Mangde;  //HBK / ITB - 091221
 
                                 //Message('01');
                                 //if Rec.Quantity = 0 then
+
+                                //fra no
+                                //ApplicationArea = Suite;
+                                //               ShowMandatory = Type <> Type::" ";
+                                //             ToolTip = 'Specifies the number of a general ledger account, item, additional cost, or fixed asset, depending on what you selected in the Type field.';
+
+                                //           trigger OnValidate()
+
+
+
                                 rec.Validate(Quantity, 1);
                                 //Message('02');
+
+
                                 rec.QtyColli := 0;
 
+                                //igen  rec."Unit Cost (LCY)" := 1550;
 
-                                Rec.Validate("Unit Cost");
-                                Rec.Validate("Unit Cost (LCY)");
-                                rec.Validate("Direct Unit Cost");
+                                Rec.Validate("Unit Cost (LCY)", 1500);
+                                Rec.Validate("Unit Cost", 2000);
+                                rec.Validate("Direct Unit Cost", 3000);
+
+
                                 //NoOnAfterValidate();
                                 //UpdateEditableOnRow();
                                 //ShowShortcutDimCode(ShortcutDimCode);
@@ -232,14 +267,17 @@ pageextension 50007 "Purch Lines Subform ITB" extends "Purchase Order Subform"
                                 //QuantityOnAfterValidate();
                                 //UpdateTypeText();
                                 //DeltaUpdateTotals();
+
+
                                 Rec.EANNr := EanItem.EANNr;
                                 CurrPage.Update();
-                                //Message('03');
+
+                                Message('03');
 
                             end;
                         end;
                         //121121                          
-
+                        Message('efter ind page');
                         //121121
 
                     end;
@@ -288,9 +326,9 @@ pageextension 50007 "Purch Lines Subform ITB" extends "Purchase Order Subform"
                     else
                         rec.validate(Quantity, rec.QtyColli);
 
-                    Rec.Validate("Unit Cost");
-                    Rec.Validate("Unit Cost (LCY)");
-                    rec.Validate("Direct Unit Cost");
+                    //                   Rec.Validate("Unit Cost");
+                    //                   Rec.Validate("Unit Cost (LCY)");
+                    //                   rec.Validate("Direct Unit Cost");
 
 
 
