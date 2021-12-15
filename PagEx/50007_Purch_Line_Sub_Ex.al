@@ -116,7 +116,7 @@ pageextension 50007 "Purch Lines Subform ITB" extends "Purchase Order Subform"
                         IndLin.Validate("No.", EanItem."No.");
                         //Message(Format(IndLin."Direct Unit Cost"));
                         Rec."Direct Unit Cost" := IndLin."Direct Unit Cost";
-                        rec.Validate(Quantity, 1);
+                        //rec.Validate(Quantity, 1);
                         //Message('02');
 
                         rec.QtyColli := 0;
