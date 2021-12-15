@@ -50,7 +50,7 @@ tableextension 50003 "Purch Line ITB" extends "Purchase Line"
         //Message('onafterinsert');
         ItemDC.Reset;
         ItemDC.SetRange("No.", Rec."No.");
-        if ItemDC.FindSet then begin
+        if (ItemDC.FindSet and (Rec."Direct Unit Cost" <> 0)) then begin
             if (ItemDC.FreightCost <> 0) or (ItemDC.FeeCost <> 0) or (ItemDC.DivCost <> 0) then begin
                 if Rec."Unit Cost" <> 0 then
                     ExchRate := Rec."Unit Cost (LCY)" / Rec."Unit Cost"
@@ -114,7 +114,7 @@ tableextension 50003 "Purch Line ITB" extends "Purchase Line"
         //Message('onafterinsert');
         ItemDC.Reset;
         ItemDC.SetRange("No.", Rec."No.");
-        if ItemDC.FindSet then begin
+        if ((ItemDC.FindSet) and (Rec."Direct Unit Cost" <> 0)) then begin
             if (ItemDC.FreightCost <> 0) or (ItemDC.FeeCost <> 0) or (ItemDC.DivCost <> 0) then begin
                 if Rec."Unit Cost" <> 0 then
                     ExchRate := Rec."Unit Cost (LCY)" / Rec."Unit Cost"
