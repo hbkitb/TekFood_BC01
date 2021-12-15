@@ -142,8 +142,8 @@ tableextension 50003 "Purch Line ITB" extends "Purchase Line"
                     //Rec."Unit Cost (LCY)" := 0;
                     InDirect := ItemDC.FreightCost + ItemDC.FeeCost + ItemDC.DivCost;
                     //151221 rec."Unit Cost (LCY)" := UnitCostLCYBefore + InDirect;
-                    rec."Unit Cost (LCY)" := (Rec."Direct Unit Cost" * ExchRate) + ((Rec."Direct Unit Cost" * ExchRate * (ItemDC."Indirect Cost %" / 100)) + InDirect);  //151221 UnitCostLCYBefore + InDirect;
-                    InDirect := InDirect / ExchRate;
+                    rec."Unit Cost (LCY)" := (Rec."Direct Unit Cost") + ((Rec."Direct Unit Cost" * (ItemDC."Indirect Cost %" / 100)) + InDirect);  //151221 UnitCostLCYBefore + InDirect;
+                    InDirect := InDirect;  /// ExchRate;
                     //rec."Unit Cost" := UnitCostBefore + InDirect;
                     Rec."Unit Cost" := Rec."Direct Unit Cost" + ((Rec."Direct Unit Cost" * (ItemDC."Indirect Cost %" / 100)) + InDirect);
                     Rec."Indirect Cost %" := (rec."Unit Cost" - rec."Direct Unit Cost") / rec."Direct Unit Cost" * 100;
