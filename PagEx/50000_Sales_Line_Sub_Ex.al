@@ -9,7 +9,7 @@ pageextension 50000 "Sales Lines Subform ITB" extends "Sales Order Subform"
             {
                 ApplicationArea = all;
 
-
+                //TableRelation = Item."No.";
 
                 trigger OnValidate()
                 var

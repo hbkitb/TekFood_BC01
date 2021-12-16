@@ -9,7 +9,7 @@ pageextension 50005 "Sales InvLines Subform ITB" extends "Sales Invoice Subform"
             {
                 ApplicationArea = all;
 
-
+                //TableRelation = Item."No.";
 
                 trigger OnValidate()
                 var

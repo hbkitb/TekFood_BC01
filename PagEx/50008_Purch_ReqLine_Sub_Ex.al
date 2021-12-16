@@ -48,7 +48,7 @@ pageextension 50008 "Purch ReqLines Subform ITB" extends "Purchase Quote Subform
             {
                 ApplicationArea = all;
 
-
+                //TableRelation = Item."No.";
 
                 trigger OnValidate()
                 var

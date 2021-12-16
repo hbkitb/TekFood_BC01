@@ -10,6 +10,7 @@ pageextension 50007 "Purch Lines Subform ITB" extends "Purchase Order Subform"
             {
                 ApplicationArea = all;
 
+                //TableRelation = Item."No.";
 
                 trigger OnValidate()
                 var

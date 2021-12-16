@@ -202,6 +202,10 @@ tableextension 50001 "Item ITB" extends Item
 
     }
 
+    fieldgroups
+    {
+        addlast(DropDown; Mangde) { }
+    }
 
     trigger OnBeforeInsert()
     var

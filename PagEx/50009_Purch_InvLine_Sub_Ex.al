@@ -48,7 +48,7 @@ pageextension 50009 "Purch InvLines Subform ITB" extends "Purch. Invoice Subform
             {
                 ApplicationArea = all;
 
-
+                //TableRelation = Item."No.";
 
                 trigger OnValidate()
                 var
