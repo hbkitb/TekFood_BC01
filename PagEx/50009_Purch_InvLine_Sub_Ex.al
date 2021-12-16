@@ -60,6 +60,7 @@ pageextension 50009 "Purch InvLines Subform ITB" extends "Purch. Invoice Subform
                     Colli: Decimal;
                     PantLine: Record "Sales Line";
                     LineNo: Decimal;
+                    IndLin: Record "Purchase Line" temporary;
 
                 begin
                     Robert := '';
@@ -112,6 +113,7 @@ pageextension 50009 "Purch InvLines Subform ITB" extends "Purch. Invoice Subform
 
                     end;
 
+                    //161221
                     if SalesItemNo = '' then begin
                         IF StrLen(Rec.EANNr) = 16 then
                             Rec.EANNr := Robert;
@@ -124,45 +126,63 @@ pageextension 50009 "Purch InvLines Subform ITB" extends "Purch. Invoice Subform
                     EanItem02.SetRange(EANNr02, Rec.EANNr);
 
                     if EanItem02.FindSet then begin
-                        //Rec."No." := EanItem."No.";
-                        EanItem.Reset;
-                        EanItem.SetRange(EANNr, Rec.EANNr);
-                        if EanItem.FindSet then begin
+                        Rec."No." := EanItem02."No.";
 
 
 
-                            SalesItemNo := EanItem02."No.";
+                        //SalesItemNo := EanItem02."No.";
 
-                            Rec.Validate("No.", EanItem02."No.");
-                            //Rec.Mangde := EanItem02.Mangde;  //HBK / ITB - 091221
+                        //Rec."No." := EanItem02."No.";
 
-                            Colli := EanItem02.KartAntal;
+                        Rec.Validate("No.", EanItem02."No.");
+                        //Rec.Mangde := EanItem02.Mangde;  //HBK / ITB - 091221
 
-                            if Colli <> 0 then begin
+                        Colli := EanItem02.KartAntal;
 
-                                Rec.QtyColli := 1;  //1 pr. 121121 Colli;
-                                rec.Validate(Quantity, Colli);
+                        if Colli <> 0 then begin
 
-                            end
-                            else begin
-                                Rec.QtyColli := 0;
-                                rec.Validate(Quantity, 1);
-                            end;
-                            //NoOnAfterValidate();
-                            //UpdateEditableOnRow();
-                            //ShowShortcutDimCode(ShortcutDimCode);
+                            Rec.QtyColli := 1;  //1 pr. 121121 Colli;
+                            rec.Validate(Quantity, Colli);
 
-                            //QuantityOnAfterValidate();
-                            //UpdateTypeText();
-                            //DeltaUpdateTotals();
-                            Rec.EANNr := EanItem02.EANNr;
-
-                            CurrPage.Update();
-
-
-
-
+                        end
+                        else begin
+                            Rec.QtyColli := 0;
+                            rec.Validate(Quantity, 1);
                         end;
+                        //151221
+                        IndLin := Rec;
+                        IndLin.Validate("No.", EanItem."No.");
+                        //Message(Format(IndLin."Direct Unit Cost"));
+                        Rec."Direct Unit Cost" := IndLin."Direct Unit Cost";
+                        //rec.Validate(Quantity, 1);
+                        //Message('02');
+
+                        rec.QtyColli := 0;
+                        rec.Validate("Direct Unit Cost");
+                        Rec.Validate("Unit Cost");
+                        Rec.Validate("Unit Cost (LCY)");
+                        //151221
+
+
+                        if Colli <> 0 then begin
+
+                            Rec.QtyColli := 1;  //1 pr. 121121 Colli;
+                            rec.Validate(Quantity, Colli);
+
+                        end
+                        else begin
+                            Rec.QtyColli := 0;
+                            rec.Validate(Quantity, 1);
+                        end;
+
+                        Rec.EANNr := EanItem02.EANNr;
+
+                        CurrPage.Update();
+
+
+
+
+                        //141221 end;
 
                         //Rec.EANNr := EanTemp;//
                     end
@@ -171,24 +191,32 @@ pageextension 50009 "Purch InvLines Subform ITB" extends "Purch. Invoice Subform
                         EanItem.SetRange(EANNr, Rec.EANNr);
 
                         if EanItem.FindSet then begin
-                            //pant
-                            clear(PantLine);
+                            //clear(PantLine);
                             LineNo := 10;
 
+                            rec."No." := EanItem."No.";
+                            //CurrPage.Update();
                             Rec.Validate("No.", EanItem."No.");
-                            //Rec.Mangde := EanItem.Mangde;  //HBK / ITB - 091221
 
-
-                            //if Rec.Quantity = 0 then
+                            IndLin := Rec;
+                            IndLin.Validate("No.", EanItem."No.");
+                            //Message(Format(IndLin."Direct Unit Cost"));
+                            Rec."Direct Unit Cost" := IndLin."Direct Unit Cost";
                             rec.Validate(Quantity, 1);
-                            rec.QtyColli := 0;
-                            //NoOnAfterValidate();
-                            //UpdateEditableOnRow();
-                            //ShowShortcutDimCode(ShortcutDimCode);
+                            //Message('02');
 
-                            //QuantityOnAfterValidate();
-                            //UpdateTypeText();
-                            //DeltaUpdateTotals();
+                            rec.QtyColli := 0;
+                            rec.Validate("Direct Unit Cost");
+                            Rec.Validate("Unit Cost");
+                            Rec.Validate("Unit Cost (LCY)");
+
+
+                            rec.Validate(Quantity, 1);
+                            //Message('02');
+
+
+                            rec.QtyColli := 0;
+
                             Rec.EANNr := EanItem.EANNr;
                             CurrPage.Update();
 
@@ -198,37 +226,50 @@ pageextension 50009 "Purch InvLines Subform ITB" extends "Purch. Invoice Subform
                         //121121
                         //121121
                         else begin
+                            //Message('1111');
                             EanItem.Reset;
                             EanItem.SetRange("No.", Rec.EANNr);
                             if EanItem.FindSet then begin
-                                clear(PantLine);
+                                //clear(PantLine);
                                 LineNo := 10;
 
+                                rec."No." := EanItem."No.";
+                                //CurrPage.Update();
                                 Rec.Validate("No.", EanItem."No.");
-                                //Rec.Mangde := EanItem.Mangde;  //HBK / ITB - 091221
 
-
-                                //if Rec.Quantity = 0 then
+                                IndLin := Rec;
+                                IndLin.Validate("No.", EanItem."No.");
+                                //Message(Format(IndLin."Direct Unit Cost"));
+                                Rec."Direct Unit Cost" := IndLin."Direct Unit Cost";
                                 rec.Validate(Quantity, 1);
-                                rec.QtyColli := 0;
-                                //NoOnAfterValidate();
-                                //UpdateEditableOnRow();
-                                //ShowShortcutDimCode(ShortcutDimCode);
+                                //Message('02');
 
-                                //QuantityOnAfterValidate();
-                                //UpdateTypeText();
-                                //DeltaUpdateTotals();
+                                rec.QtyColli := 0;
+                                rec.Validate("Direct Unit Cost");
+                                Rec.Validate("Unit Cost");
+                                Rec.Validate("Unit Cost (LCY)");
+
+
+                                rec.Validate(Quantity, 1);
+                                //Message('02');
+
+
+                                rec.QtyColli := 0;
+
                                 Rec.EANNr := EanItem.EANNr;
                                 CurrPage.Update();
 
 
+
                             end;
                         end;
-                        //121121                          
-
-                        //121121
 
                     end;
+
+                    //161221
+
+
+
                     //end; testing 121021
                 end;
 
