@@ -96,6 +96,8 @@ page 50000 "ITB_TEST_Ind_Bar"
                                 PayJour."Journal Template Name" := 'AC01';
                                 PayJour."Journal Batch Name" := 'AC01';
                                 PayJour."Document Type" := PayJour."Document Type"::Payment;
+                                if (Betal < 0) or (BetalDAN < 0) then
+                                    PayJour."Document Type" := PayJour."Document Type"::" ";
                                 PayJour."Line No." := PayLine + 10000;
                                 PayLine := PayLine + 10000;
                                 PayJour."Account Type" := PayJour."Account Type"::Customer;
