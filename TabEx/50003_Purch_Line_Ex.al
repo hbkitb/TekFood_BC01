@@ -82,7 +82,13 @@ tableextension 50003 "Purch Line ITB" extends "Purchase Line"
                     Rec.Validate(Quantity);
                     Rec.Modify;
                 end;
+            end
+            //120122
+            else begin
+                Rec.Validate(Quantity);
+                Rec.Modify;
             end;
+            //120122
         end;
     end;
 
@@ -164,7 +170,13 @@ tableextension 50003 "Purch Line ITB" extends "Purchase Line"
                      Rec.Modify;
                      */
                 end;
+            end
+            //120122
+            else begin
+                Rec.Validate(Quantity);
+                Rec.Modify;
             end;
+            //120122
         end;
 
     end;
