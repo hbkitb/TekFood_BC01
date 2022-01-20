@@ -144,7 +144,7 @@ page 50000 "ITB_TEST_Ind_Bar"
 
 
                         //HBK / ITB - 200122 - Print Kvittering
-                        if (PayInvoice <> 0) OR (PayCard <> 0) then begin
+                        if (Betal <> 0) OR (BetalDAN <> 0) then begin
                             AC_Cust := Rec;
                             if Betal <> 0 then
                                 AC_Cust."Budgeted Amount" := Betal
