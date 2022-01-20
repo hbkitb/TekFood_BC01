@@ -64,9 +64,15 @@ report 50003 "Kvit_AC"   //var report 110
             begin
                 Customer.CalcFields("Balance (LCY)");
                 //Rest := Rec."Balance (LCY)";//
-
+                comp.get();
+                AC_Company := comp.Name;
+                emp.Reset;
+                emp.SetRange("User Name", UserId);
+                if emp.FindSet then
+                    AC_Employee := emp."Full Name";
                 AC_Cash := Customer."Budgeted Amount";
                 AC_After_Balance := Customer."Balance (LCY)" - AC_Cash;
+
             end;
 
             trigger OnPreDataItem()
@@ -126,6 +132,8 @@ report 50003 "Kvit_AC"   //var report 110
         AC_Employee: Text[100];
         AC_Company: Text[100];
         AC_Kvitt: Text[30];
+        emp: Record user;
+        comp: Record "Company Information";
 
 
     procedure InitializeRequest(SetLabelFormat: Option)
