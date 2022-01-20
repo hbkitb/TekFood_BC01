@@ -142,6 +142,19 @@ page 50000 "ITB_TEST_Ind_Bar"
                         Rec.CalcFields("Balance (LCY)");
                         Rest := Rec."Balance (LCY)";
 
+
+                        //HBK / ITB - 200122 - Print Kvittering
+                        if (PayInvoice <> 0) OR (PayCard <> 0) then begin
+                            AC_Cust := Rec;
+                            if Betal <> 0 then
+                                AC_Cust."Budgeted Amount" := Betal
+                            else
+                                AC_Cust."Budgeted Amount" := BetalDAN;
+
+                            Report.run(Report::Kvit_AC, true, true, AC_Cust);
+                        end
+                        //HBK / ITB - 200122 - Print Kvittering
+
                         /*
                         CurrentJnlBatchName := GetRangeMax("Journal Batch Name");
                         if IsSimplePage then
@@ -188,6 +201,7 @@ page 50000 "ITB_TEST_Ind_Bar"
 
         PayJour: Record "Gen. Journal Line";
         PayLine: Integer;
+        AC_Cust: Record Customer temporary;  //200122
 
 
 }
