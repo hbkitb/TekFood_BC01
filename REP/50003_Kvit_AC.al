@@ -68,7 +68,7 @@ report 50003 "Kvit_AC"   //var report 110
             begin
                 Customer.CalcFields("Balance (LCY)");
                 //Rest := Rec."Balance (LCY)";
-                comp.get();
+                //comp.get();
                 AC_Company := comp.Name;
                 DummyCompanyInfo.Picture := comp.Picture;
                 emp.Reset;
@@ -117,6 +117,13 @@ report 50003 "Kvit_AC"   //var report 110
     labels
     {
     }
+
+    trigger OnInitReport()
+    begin
+        comp.get();
+        comp.CalcFields(Picture);
+
+    end;
 
     trigger OnPreReport()
     begin

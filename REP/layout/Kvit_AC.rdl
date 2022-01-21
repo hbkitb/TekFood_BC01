@@ -11,6 +11,70 @@
       <rd:DataSourceID>fb4f0fd2-80fd-417a-9b4b-e56687f17ce8</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+      <Fields>
+        <Field Name="No_">
+          <DataField>No_</DataField>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+        </Field>
+        <Field Name="Address">
+          <DataField>Address</DataField>
+        </Field>
+        <Field Name="Address_2">
+          <DataField>Address_2</DataField>
+        </Field>
+        <Field Name="Post_Code">
+          <DataField>Post_Code</DataField>
+        </Field>
+        <Field Name="City">
+          <DataField>City</DataField>
+        </Field>
+        <Field Name="Contact">
+          <DataField>Contact</DataField>
+        </Field>
+        <Field Name="AC_Kvitt">
+          <DataField>AC_Kvitt</DataField>
+        </Field>
+        <Field Name="AC_Date">
+          <DataField>AC_Date</DataField>
+        </Field>
+        <Field Name="AC_Number">
+          <DataField>AC_Number</DataField>
+        </Field>
+        <Field Name="AC_Cash">
+          <DataField>AC_Cash</DataField>
+        </Field>
+        <Field Name="AC_CashFormat">
+          <DataField>AC_CashFormat</DataField>
+        </Field>
+        <Field Name="AC_After_Balance">
+          <DataField>AC_After_Balance</DataField>
+        </Field>
+        <Field Name="AC_After_BalanceFormat">
+          <DataField>AC_After_BalanceFormat</DataField>
+        </Field>
+        <Field Name="AC_Company">
+          <DataField>AC_Company</DataField>
+        </Field>
+        <Field Name="AC_Employee">
+          <DataField>AC_Employee</DataField>
+        </Field>
+        <Field Name="GroupNo1">
+          <DataField>GroupNo1</DataField>
+        </Field>
+        <Field Name="DummyCompanyInfoPic">
+          <DataField>DummyCompanyInfoPic</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -987,7 +1051,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>="Kontant betasling: "</Value>
+                                  <Value>="Kontant betaling: "</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -1646,7 +1710,7 @@
               <MIMEType>image/png</MIMEType>
               <Sizing>FitProportional</Sizing>
               <Top>0.27533cm</Top>
-              <Left>5.45016cm</Left>
+              <Left>9.26016cm</Left>
               <Height>1.79883cm</Height>
               <Width>7.59967cm</Width>
               <DataElementOutput>NoOutput</DataElementOutput>
@@ -1674,6 +1738,12 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -1713,68 +1783,4 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>5b8511db-dd76-4069-affb-627518def95a</rd:ReportID>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Fields>
-        <Field Name="No_">
-          <DataField>No_</DataField>
-        </Field>
-        <Field Name="Name">
-          <DataField>Name</DataField>
-        </Field>
-        <Field Name="Address">
-          <DataField>Address</DataField>
-        </Field>
-        <Field Name="Address_2">
-          <DataField>Address_2</DataField>
-        </Field>
-        <Field Name="Post_Code">
-          <DataField>Post_Code</DataField>
-        </Field>
-        <Field Name="City">
-          <DataField>City</DataField>
-        </Field>
-        <Field Name="Contact">
-          <DataField>Contact</DataField>
-        </Field>
-        <Field Name="AC_Kvitt">
-          <DataField>AC_Kvitt</DataField>
-        </Field>
-        <Field Name="AC_Date">
-          <DataField>AC_Date</DataField>
-        </Field>
-        <Field Name="AC_Number">
-          <DataField>AC_Number</DataField>
-        </Field>
-        <Field Name="AC_Cash">
-          <DataField>AC_Cash</DataField>
-        </Field>
-        <Field Name="AC_CashFormat">
-          <DataField>AC_CashFormat</DataField>
-        </Field>
-        <Field Name="AC_After_Balance">
-          <DataField>AC_After_Balance</DataField>
-        </Field>
-        <Field Name="AC_After_BalanceFormat">
-          <DataField>AC_After_BalanceFormat</DataField>
-        </Field>
-        <Field Name="AC_Company">
-          <DataField>AC_Company</DataField>
-        </Field>
-        <Field Name="AC_Employee">
-          <DataField>AC_Employee</DataField>
-        </Field>
-        <Field Name="GroupNo1">
-          <DataField>GroupNo1</DataField>
-        </Field>
-        <Field Name="DummyCompanyInfoPic">
-          <DataField>DummyCompanyInfoPic</DataField>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-    </DataSet>
-  </DataSets>
 </Report>
