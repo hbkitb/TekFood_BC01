@@ -129,6 +129,7 @@ page 50000 "ITB_TEST_Ind_Bar"
 
 
                                 PayJour.Insert;
+                                Voucher := PayJour."Document No.";  //200122
 
                                 CODEUNIT.Run(CODEUNIT::"Gen. Jnl.-Post", PayJour);
                             end;
@@ -145,13 +146,25 @@ page 50000 "ITB_TEST_Ind_Bar"
 
                         //HBK / ITB - 200122 - Print Kvittering
                         if (Betal <> 0) OR (BetalDAN <> 0) then begin
-                            AC_Cust := Rec;
+                            //Message(Rec."No.");
+                            //AC_Cust := Rec;
+                            //Message(AC_Cust."No.");
                             if Betal <> 0 then
-                                AC_Cust."Budgeted Amount" := Betal
-                            else
-                                AC_Cust."Budgeted Amount" := BetalDAN;
+                                Gloal_Var.Kvit_Save(Voucher, Betal)
+                            //Rec."Budgeted Amount" := Betal
 
-                            Report.run(Report::Kvit_AC, true, true, AC_Cust);
+                            else
+                                Gloal_Var.Kvit_Save(Voucher, BetalDAN);
+                            //Rec."Budgeted Amount" := BetalDAN;
+
+
+                            //Rec."Telex No." := Voucher;
+                            //Message(Rec."Telex No.");
+                            //AC_Cust.Modify;
+                            //Message(Rec."No.");
+                            //Message(AC_Cust."Telex No.");
+                            Report.run(Report::Kvit_AC, true, true, Rec);
+                            //Report.run(Report::Kvit_AC, true, true, Rec);
                         end
                         //HBK / ITB - 200122 - Print Kvittering
 
@@ -201,7 +214,10 @@ page 50000 "ITB_TEST_Ind_Bar"
 
         PayJour: Record "Gen. Journal Line";
         PayLine: Integer;
-        AC_Cust: Record Customer temporary;  //200122
+
+        Voucher: Code[20];  //200122
+        Gloal_Var: Codeunit Global_Var;  //200122
+                                         //AC_Cust: Record Customer temporary; //210122
 
 
 }

@@ -58,20 +58,31 @@ report 50003 "Kvit_AC"   //var report 110
             column(GroupNo1; GroupNo)
             {
             }
+            column(DummyCompanyInfoPic; DummyCompanyInfo.Picture)
+            {
+
+            }
 
 
             trigger OnAfterGetRecord()
             begin
                 Customer.CalcFields("Balance (LCY)");
-                //Rest := Rec."Balance (LCY)";//
+                //Rest := Rec."Balance (LCY)";
                 comp.get();
                 AC_Company := comp.Name;
+                DummyCompanyInfo.Picture := comp.Picture;
                 emp.Reset;
                 emp.SetRange("User Name", UserId);
                 if emp.FindSet then
                     AC_Employee := emp."Full Name";
-                AC_Cash := Customer."Budgeted Amount";
-                AC_After_Balance := Customer."Balance (LCY)" - AC_Cash;
+
+                Global_Var.Kvit_Get(AC_Number, AC_Cash);
+                //AC_Cash := Customer."Budgeted Amount";
+                //message('report');
+                //Message(Format(AC_Cash));
+                AC_After_Balance := Customer."Balance (LCY)";  //- AC_Cash;
+                //AC_Number := Customer."Telex No.";
+
 
             end;
 
@@ -126,7 +137,7 @@ report 50003 "Kvit_AC"   //var report 110
         Counter: Integer;
         RecPerPageNum: Integer;
         AC_Date: Date;
-        AC_Number: Text[20];
+        AC_Number: Code[20];   //Text[20];
         AC_Cash: Decimal;
         AC_After_Balance: Decimal;
         AC_Employee: Text[100];
@@ -134,6 +145,8 @@ report 50003 "Kvit_AC"   //var report 110
         AC_Kvitt: Text[30];
         emp: Record user;
         comp: Record "Company Information";
+        Global_Var: Codeunit Global_Var;
+        DummyCompanyInfo: Record "Company Information";
 
 
     procedure InitializeRequest(SetLabelFormat: Option)
