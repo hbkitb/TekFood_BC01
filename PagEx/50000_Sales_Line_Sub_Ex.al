@@ -317,8 +317,43 @@ pageextension 50000 "Sales Lines Subform ITB" extends "Sales Order Subform"
 
     actions
     {
+        addlast("Related Information")
+        {
+
+            action(VareLinier)
+            {
+                ApplicationArea = All;
+                Caption = 'Varelinier';
+                Image = Inventory;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                RunObject = Page "Value Entries";
+                RunPageLink = "Source No." = field("Bill-to Customer No."), "No." = field("No."), "Item Ledger Entry Type" = filter(1);
+                RunPageView = SORTING("Item Ledger Entry Type", "Posting Date", "Item No.", "Inventory Posting Group", "Dimension Set ID")
+                              ORDER(Ascending);
+                ShortCutKey = 'Ctrl+F7';
+                ToolTip = 'Vis alle varelinier.';
+            }
+            /*     action("ERP-TEST")//
+                 {
+                     Caption = 'ERP';
+                     ApplicationArea = All;
+
+                     trigger OnAction()
+                     begin
+                         Message('dette er ok');
+                     end;
+                 }*/
+        }
+        // Add changes to page actions here
+    }
+    /*
+    actions
+    {
 
     }
+    */
 
     var
 
