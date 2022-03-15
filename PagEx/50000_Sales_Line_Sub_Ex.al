@@ -329,7 +329,7 @@ pageextension 50000 "Sales Lines Subform ITB" extends "Sales Order Subform"
                 PromotedCategory = Process;
                 PromotedIsBig = true;
                 RunObject = Page "Value Entries";
-                RunPageLink = "Source No." = field("Bill-to Customer No."), "No." = field("No."), "Item Ledger Entry Type" = filter(1);
+                RunPageLink = "Source No." = field("Bill-to Customer No."), "Item No." = field("No."), "Item Ledger Entry Type" = filter(1);
                 RunPageView = SORTING("Item Ledger Entry Type", "Posting Date", "Item No.", "Inventory Posting Group", "Dimension Set ID")
                               ORDER(Ascending);
                 ShortCutKey = 'Ctrl+F7';
