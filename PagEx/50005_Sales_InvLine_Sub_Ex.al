@@ -312,6 +312,42 @@ pageextension 50005 "Sales InvLines Subform ITB" extends "Sales Invoice Subform"
 
     actions
     {
+        addlast("Related Information")
+        {
+
+            action(VareLinier)
+            {
+                ApplicationArea = All;
+                Caption = 'Varelinier';
+                Image = Inventory;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                RunObject = Page "Value Entries";
+                //RunObject = page "Sales Invoice Subform";
+                //RunPageLink = "Bill-to Customer No." = field("Bill-to Customer No."), "No." = field("No.");  //, "Item Ledger Entry Type" = filter(1);
+                //RunPageView = SORTING("Document No.", "Line No.", "Document Type")
+                //              ORDER(Ascending);
+
+                RunPageLink = "Source No." = field("Bill-to Customer No."), "Item No." = field("No."), "Item Ledger Entry Type" = filter(1), "Document Type" = filter(2), Adjustment = filter(0);
+                RunPageView = SORTING("Item Ledger Entry Type", "Posting Date", "Item No.", "Inventory Posting Group", "Dimension Set ID")
+                              ORDER(Descending);
+
+
+                ShortCutKey = 'Ctrl+D';
+                ToolTip = 'Vis alle varelinier.';
+            }
+            /*     action("ERP-TEST")//
+                 {
+                     Caption = 'ERP';
+                     ApplicationArea = All;
+
+                     trigger OnAction()
+                     begin
+                         Message('dette er ok');
+                     end;
+                 }*/
+        }
 
     }
 

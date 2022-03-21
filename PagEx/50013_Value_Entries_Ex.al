@@ -8,6 +8,7 @@ pageextension 50013 "Value_Entries_Ext" extends "Value Entries"
             field(UnitPrice; UnitPrice)
             {
                 ApplicationArea = all;
+                Caption = 'A-pris';
 
                 trigger OnValidate()
                 var
