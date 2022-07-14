@@ -342,6 +342,30 @@ pageextension 50000 "Sales Lines Subform ITB" extends "Sales Order Subform"
                 ShortCutKey = 'Ctrl+D';
                 ToolTip = 'Vis alle varelinier.';
             }
+
+            //120722
+            action(LotSporing)
+            {
+
+
+                ApplicationArea = ItemTracking;
+                Caption = 'Item &Tracking Lines';
+                Image = ItemTrackingLines;
+                ShortCutKey = 'Alt+Ctrl+L';
+                Enabled = rec.Type = rec.Type::Item;
+                ToolTip = 'View or edit serial and lot numbers for the selected item. This action is available only for lines that contain an item.';
+
+                trigger OnAction()
+                var
+                //ITT: Page ITB_ITEM_Tracking;
+                begin
+                    rec.OpenItemTrackingLines();
+                    //ITT.Run();
+                end;
+
+            }
+            //}
+            //120722            
             /*     action("ERP-TEST")//
                  {
                      Caption = 'ERP';

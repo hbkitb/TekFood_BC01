@@ -347,7 +347,26 @@ pageextension 50005 "Sales InvLines Subform ITB" extends "Sales Invoice Subform"
                          Message('dette er ok');
                      end;
                  }*/
+            //120722
+            action(LotSporing)
+            {
+
+
+                ApplicationArea = ItemTracking;
+                Caption = 'Item &Tracking Lines';
+                Image = ItemTrackingLines;
+                ShortCutKey = 'Alt+Ctrl+L';
+                Enabled = rec.Type = rec.Type::Item;
+                ToolTip = 'View or edit serial and lot numbers for the selected item. This action is available only for lines that contain an item.';
+
+                trigger OnAction()
+                begin
+                    rec.OpenItemTrackingLines();
+                end;
+
+            }
         }
+        //120722
 
     }
 
